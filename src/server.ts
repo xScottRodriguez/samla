@@ -1,44 +1,37 @@
-import express, { Application } from 'express'
 import cors from 'cors'
-
-import { envs } from '@config/'
-import { logger } from '@utils/index'
-
+import express from 'express'
+import { envs } from './config'
+import { logger } from './utils'
+import { connectDB } from './database'
+import { authRoutes } from './routes'
 export class Server {
-  private app: Application
+  private app: express.Application
   constructor() {
     this.app = express()
+    this.database()
     this.middleware()
     this.routes()
-    this.database()
     this.errorHandling()
   }
 
-  start() {
-    logger.info('Server starting')
-
+  start(): void {
     this.app.listen(envs.port, () =>
       logger.info(`Server running on port ${envs.port}`),
     )
   }
 
-  stop() {
-    logger.info('Server stopped')
+  routes(): void {
+    this.app.use('/api/auth', authRoutes)
   }
 
-  routes() {
-    logger.info('Routes configured')
+  database(): void {
+    connectDB()
   }
 
-  database() {
-    logger.info('Database configured')
-  }
-
-  middleware() {
-    logger.info('Middleware configured')
-
+  middleware(): void {
     this.app.use(express.json())
-    this.app.use(cors)
+    this.app.use(cors())
+    logger.info('Middleware configured')
   }
 
   errorHandling() {

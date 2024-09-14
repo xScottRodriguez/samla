@@ -1,17 +1,17 @@
-import winston from 'winston'
+import * as winston from 'winston'
 
 const logger = winston.createLogger({
   level: 'silly',
   format: winston.format.combine(
     winston.format.colorize(),
-    
+
     winston.format.timestamp(),
     winston.format.prettyPrint(),
     winston.format.printf(
       ({
         level,
         message,
-        label='API',
+        label = 'API',
         timestamp,
         ...meta
       }: winston.Logform.TransformableInfo) => {
@@ -30,4 +30,3 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console({ level: 'silly' })],
 })
 export { logger }
-
