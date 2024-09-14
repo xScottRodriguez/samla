@@ -2,8 +2,8 @@ import { IRegistrationRequest } from '../interfaces'
 import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema<IRegistrationRequest>({
-  firstname: { type: String, required: true },
-  lastname: { type: String, required: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   phoneNumber: { type: String, required: true },
   identificationType: {

@@ -1,6 +1,6 @@
 // src/errors/ApiError.ts
 
-import { HttpStatusCode, HttpStatusMessage } from './http-status-codes'
+import { HttpStatusCode } from './http-status-codes'
 
 export class ApiError extends Error {
   status: number
@@ -14,18 +14,23 @@ export class ApiError extends Error {
     Error.captureStackTrace(this) // Capturar el stack trace
   }
 
-  static notFound(message = HttpStatusMessage.NotFound, errors: string[]) {
-    throw new ApiError(HttpStatusCode.NotFound, message, errors)
+  static notFound(message: string, errors: string[] = []) {
+    return new ApiError(HttpStatusCode.NotFound, message, errors)
   }
 
-  static badRequest(message: HttpStatusMessage.BadRequest, errors: string[]) {
-    throw new ApiError(HttpStatusCode.BadRequest, message, errors)
-  }
-  static conflic(message: HttpStatusMessage.Conflict, errors: string[]) {
-    throw new ApiError(HttpStatusCode.Conflict, message, errors)
+  static badRequest(message: string, errors: string[] = []) {
+    return new ApiError(HttpStatusCode.BadRequest, message, errors)
   }
 
-  static forbidden(message: HttpStatusMessage.Forbidden, errors: string[]) {
-    throw new ApiError(HttpStatusCode.Forbidden, message, errors)
+  static conflict(message: string, errors: string[] = []) {
+    return new ApiError(HttpStatusCode.Conflict, message, errors)
+  }
+
+  static forbidden(message: string, errors: string[] = []) {
+    return new ApiError(HttpStatusCode.Forbidden, message, errors)
+  }
+
+  static internalServer(message: string, errors: string[] = []) {
+    return new ApiError(HttpStatusCode.InternalServerError, message, errors)
   }
 }

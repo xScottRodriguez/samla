@@ -1,7 +1,10 @@
+import { RegistrationRequest } from '../models'
 import { IRegistrationRequest } from '../interfaces'
 class AuthService {
-  registry(payload: IRegistrationRequest) {
-    return payload
+  async registry(payload: IRegistrationRequest) {
+    const registrationRequestToSave =
+      await RegistrationRequest.create<IRegistrationRequest>(payload)
+    return registrationRequestToSave.save()
   }
 }
 
