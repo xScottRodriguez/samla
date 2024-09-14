@@ -23,7 +23,7 @@ class AuthController {
       return successResponse({
         res,
         data,
-        message: 'User registered successfully',
+        message: 'Registro creado exitosamente',
         statusCode: HttpStatusCode.Created,
       })
     } catch (error) {

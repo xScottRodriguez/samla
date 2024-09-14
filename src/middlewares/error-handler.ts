@@ -1,5 +1,5 @@
 import { errorResponse } from '../utils'
-import { HttpStatusMessage } from '../errors'
+import { ApiError, HttpStatusMessage } from '../errors'
 import { NextFunction, Request, Response } from 'express'
 
 export const errorHandler = (
@@ -8,6 +8,14 @@ export const errorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
+  if (err instanceof ApiError) {
+    return errorResponse({
+      errors: err.errors,
+      message: err.message,
+      statusCode: err.status,
+      res,
+    })
+  }
   return errorResponse({
     errors: [{ msg: err.message, path: '' }],
     message: HttpStatusMessage.InternalServerError,
