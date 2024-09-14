@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    /* Projects */
+    "target": "es2016",
+    "module": "commonjs",
+    "baseUrl": "./src", /* El baseUrl es ahora la carpeta 'src' para los imports absolutos */
+    "rootDir": "./src",
+    "paths": {
+      "@config/*": ["config"], /* Ahora apunta correctamente al directorio config dentro de 'src' */
+      "@utils/*": ["utils/*"],   /* Apunta al directorio utils dentro de 'src' */
+    },
+    "outDir": "./dist",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}

@@ -1,0 +1,13 @@
+dist/
+node_modules/
+logs/
+*.log
+
+coverage/
+
+*.min.js
+*.bundle.js
+
+public/
+
+*.config.js
