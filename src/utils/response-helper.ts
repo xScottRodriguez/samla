@@ -1,4 +1,4 @@
-import { HttpStatusCode, HttpStatusMessage } from 'errors'
+import { HttpStatusCode, HttpStatusMessage } from '../errors'
 import { Response } from 'express'
 
 // Tipos para la paginación

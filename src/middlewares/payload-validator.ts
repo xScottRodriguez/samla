@@ -1,5 +1,5 @@
-import { errorResponse } from '@utils/response-helper'
-import { HttpStatusCode, HttpStatusMessage } from 'errors'
+import { errorResponse } from '../utils'
+import { HttpStatusCode, HttpStatusMessage } from '../errors'
 import { NextFunction, Request, Response } from 'express'
 import Joi from 'joi'
 
