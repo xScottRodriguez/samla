@@ -10,6 +10,7 @@ interface Pagination {
 }
 
 type StatusSuccess =
+  | HttpStatusCode.OK
   | HttpStatusCode.Created
   | HttpStatusCode.Accepted
   | HttpStatusCode.NoContent
@@ -39,8 +40,8 @@ interface ErrorResponse {
 interface SuccessResponseProps<T> {
   res: Response
   data: T | null
-  message: string
-  statusCode: StatusCode
+  message?: string
+  statusCode?: StatusCode
   pagination?: Pagination
 }
 
@@ -52,9 +53,9 @@ interface ErrorResponseProps {
 }
 const successResponse = <T>({
   data,
-  message,
+  message = HttpStatusMessage.OK,
   res,
-  statusCode,
+  statusCode = HttpStatusCode.Created,
   pagination,
 }: SuccessResponseProps<T>) => {
   const response: SuccessResponse<T> = {

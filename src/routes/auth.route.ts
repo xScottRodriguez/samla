@@ -1,6 +1,8 @@
+import { validateFields } from '../middlewares'
 import { authController } from '../controllers'
-import { logger } from '../utils'
 import { Router } from 'express'
+import { RegistrationSchema } from './validations'
+import { IRegistrationRequest } from 'interfaces'
 
 class AuthRoutes {
   public router: Router
@@ -10,8 +12,12 @@ class AuthRoutes {
     this.routes()
   }
   public routes(): void {
-    this.router.get('/register', authController.register)
-    this.router.get('/login', authController.login)
+    this.router.post(
+      '/register',
+      [validateFields<IRegistrationRequest>(RegistrationSchema)],
+      authController.register,
+    )
+    this.router.post('/login', authController.login)
   }
 }
 
