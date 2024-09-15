@@ -27,6 +27,13 @@ const logger = winston.createLogger({
       },
     ),
   ),
-  transports: [new winston.transports.Console({ level: 'silly' })],
+  transports: [
+    new winston.transports.Console({ level: 'silly' }),
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+    new winston.transports.File({
+      filename: 'logs/errors.log',
+      level: 'error',
+    }),
+  ],
 })
 export { logger }

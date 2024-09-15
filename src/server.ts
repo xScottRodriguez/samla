@@ -42,12 +42,10 @@ export class Server {
     this.app.use(express.json())
     this.app.use(cors())
     this.app.use(passport.initialize())
-    logger.info('Middleware configured')
   }
 
   private routes(): void {
     this.app.use('/api/auth', authRoutes)
-    logger.info('Routes configured')
   }
 
   private errorHandling(): void {

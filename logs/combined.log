@@ -1,0 +1,99 @@
+2024-09-15T22:24:26.774Z [API] [32minfo[39m: "Middleware configured"
+2024-09-15T22:24:26.777Z [API] [32minfo[39m: "Routes configured"
+2024-09-15T22:24:26.779Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:24:50.962Z [API] [32minfo[39m: "Middleware configured"
+2024-09-15T22:24:50.965Z [API] [32minfo[39m: "Routes configured"
+2024-09-15T22:24:50.967Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:25:14.042Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:25:44.043Z [Database] [31merror[39m: "MongoDB connection error:"
+{
+  "error": {
+    "message": "connect ECONNREFUSED 127.0.0.1:27017",
+    "reason": {
+      "type": "Unknown",
+      "servers": {
+        "localhost:27017": {
+          "address": "localhost:27017",
+          "type": "Unknown",
+          "hosts": [],
+          "passives": [],
+          "arbiters": [],
+          "tags": {},
+          "minWireVersion": 0,
+          "maxWireVersion": 0,
+          "roundTripTime": -1,
+          "minRoundTripTime": 0,
+          "lastUpdateTime": 3135613,
+          "lastWriteDate": 0,
+          "error": {},
+          "topologyVersion": null,
+          "setName": null,
+          "setVersion": null,
+          "electionId": null,
+          "logicalSessionTimeoutMinutes": null,
+          "primary": null,
+          "me": null,
+          "$clusterTime": null
+        }
+      },
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": null,
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    }
+  }
+}
+2024-09-15T22:26:03.549Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:26:11.779Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:26:24.054Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:26:29.563Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:26:59.560Z [Database] [31merror[39m: "MongoDB connection error:"
+{
+  "error": {
+    "message": "connect ECONNREFUSED 127.0.0.1:27017",
+    "reason": {
+      "type": "Unknown",
+      "servers": {
+        "localhost:27017": {
+          "address": "localhost:27017",
+          "type": "Unknown",
+          "hosts": [],
+          "passives": [],
+          "arbiters": [],
+          "tags": {},
+          "minWireVersion": 0,
+          "maxWireVersion": 0,
+          "roundTripTime": -1,
+          "minRoundTripTime": 0,
+          "lastUpdateTime": 3211141,
+          "lastWriteDate": 0,
+          "error": {},
+          "topologyVersion": null,
+          "setName": null,
+          "setVersion": null,
+          "electionId": null,
+          "logicalSessionTimeoutMinutes": null,
+          "primary": null,
+          "me": null,
+          "$clusterTime": null
+        }
+      },
+      "stale": false,
+      "compatible": true,
+      "heartbeatFrequencyMS": 10000,
+      "localThresholdMS": 15,
+      "setName": null,
+      "maxElectionId": null,
+      "maxSetVersion": null,
+      "commonWireVersion": 0,
+      "logicalSessionTimeoutMinutes": null
+    }
+  }
+}
+2024-09-15T22:27:44.640Z [API] [32minfo[39m: "Server running on port 3001"
+2024-09-15T22:28:12.831Z [Database] [32minfo[39m: "MongoDB Connected..."

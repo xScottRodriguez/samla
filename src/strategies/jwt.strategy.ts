@@ -1,8 +1,9 @@
-import { envs } from 'config'
 import { PassportStatic } from 'passport'
 import { Strategy, ExtractJwt, StrategyOptions } from 'passport-jwt'
 
+import { envs } from '../config'
 import { UserService } from '../services'
+import { logger } from '../utils'
 
 interface IJwtPayload {
   sub: string
@@ -24,6 +25,12 @@ export class JwtStrategy {
 
           return done(null, user)
         } catch (error) {
+          const err = error as Error
+          logger.error({
+            label: 'JWT',
+            message: err.message,
+            stack: err.stack,
+          })
           return done(error, false)
         }
       }),
