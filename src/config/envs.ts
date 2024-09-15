@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import * as joi from 'joi'
 
-interface EnvConfig {
+interface IEnvConfig {
   PORT: number
   DATABASE_URL: string
   AWS_ACCESS_KEY_ID: string
@@ -20,11 +20,9 @@ const envVarsSchema = joi
 
 const { error, value } = envVarsSchema.validate(process.env)
 
-if (error) {
-  throw new Error(`Config validation error: ${error.message} QLO`)
-}
+if (error) throw new Error(`Config validation error: ${error.message} QLO`)
 
-const envVars: EnvConfig = value
+const envVars: IEnvConfig = value
 
 export const envs = {
   port: envVars.PORT,

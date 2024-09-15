@@ -1,5 +1,7 @@
 import { randomUUID, UUID } from 'crypto'
-import { TFiles, TNormalizedFiles } from 'interfaces'
+import type { Express } from 'express'
+
+import { TFiles, TNormalizedFiles } from '../interfaces'
 
 const getRandomUuid = (): UUID => {
   return randomUUID()

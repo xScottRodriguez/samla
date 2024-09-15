@@ -1,26 +1,15 @@
 import { NextFunction, Request, Response } from 'express'
-import { authService } from '../services'
-import { logger, normalizedFiles, pageBuilder, successResponse } from '../utils'
-import { HttpStatusCode } from '../errors'
-import {
-  IDataToSave,
-  IPagination,
-  IPaginationQuery,
-  IRegistrationRequest,
-  TNormalizedFiles,
-} from 'interfaces'
+import { IDataToSave, IPagination, IPaginationQuery } from 'interfaces'
 
-type TFiles =
-  | {
-      [fieldname: string]: Express.Multer.File[]
-    }
-  | Express.Multer.File[]
-  | undefined
+import { HttpStatusCode } from '../errors'
+import { authService } from '../services'
+import { normalizedFiles, SuccessResponse } from '../utils'
+
 class AuthController {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       // const data = authService.registry(req.body)
-      return successResponse({
+      return SuccessResponse({
         res,
         data: null,
         message: 'User registered successfully',
@@ -36,7 +25,7 @@ class AuthController {
       const filesNormalized = normalizedFiles(files)
 
       const data = await authService.registry(req.body, filesNormalized)
-      return successResponse({
+      return SuccessResponse({
         res,
         data,
         message: 'Registro creado exitosamente',
@@ -66,7 +55,7 @@ class AuthController {
           filters,
         })
 
-      return successResponse({
+      return SuccessResponse({
         res,
         data,
         meta: {

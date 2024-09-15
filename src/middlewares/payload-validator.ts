@@ -1,7 +1,8 @@
-import { errorResponse, logger } from '../utils'
-import { HttpStatusCode, HttpStatusMessage } from '../errors'
 import { NextFunction, Request, Response } from 'express'
 import Joi from 'joi'
+
+import { HttpStatusCode, HttpStatusMessage } from '../errors'
+import { ErrorResponse } from '../utils'
 
 enum Source {
   BODY = 'body',
@@ -13,14 +14,13 @@ const validateFields = <T>(
   sourceType: Source = Source.BODY,
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (!Object.values(Source).includes(sourceType)) {
-      return errorResponse({
+    if (!Object.values(Source).includes(sourceType))
+      return ErrorResponse({
         message: 'Invalid Source Specified',
         res,
         statusCode: HttpStatusCode.BadRequest,
         errors: [],
       })
-    }
 
     const { error } = rules.validate(req[sourceType], { abortEarly: false })
 
@@ -30,7 +30,7 @@ const validateFields = <T>(
         path: e.path.join('.'),
       }))
 
-      return errorResponse({
+      return ErrorResponse({
         errors,
         message: HttpStatusMessage.BadRequest,
         res,

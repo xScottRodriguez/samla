@@ -1,5 +1,6 @@
-import { IDataToSave } from '../interfaces'
 import mongoose from 'mongoose'
+
+import { IDataToSave } from '../interfaces'
 
 const schema = new mongoose.Schema<IDataToSave>({
   firstName: { type: String, required: true },

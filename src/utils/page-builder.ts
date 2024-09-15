@@ -1,6 +1,7 @@
+import { Model } from 'mongoose'
+
 import { ApiError } from '../errors'
 import { IPagination, IPaginationOptions } from '../interfaces'
-import { Model } from 'mongoose'
 import { getTakeAndSkip } from '../utils'
 
 /**

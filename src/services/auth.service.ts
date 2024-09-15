@@ -1,13 +1,14 @@
-import { RegistrationRequest } from '../models'
+import type { Express } from 'express'
+
+import { ApiError } from '../errors'
 import {
   IDataToSave,
   IFileNames,
   IPagination,
   IPaginationFilters,
   IRegistrationRequest,
-  TFiles,
 } from '../interfaces'
-import { ApiError } from '../errors'
+import { RegistrationRequest } from '../models'
 import { getRandomUuid, logger, pageBuilder } from '../utils'
 import { awsService } from './aws-s3.service'
 
@@ -42,7 +43,7 @@ class AuthService {
     }
   }
 
-  getRegistrationRequests({
+  async getRegistrationRequests({
     limit,
     page,
     filters,
@@ -52,43 +53,47 @@ class AuthService {
     filters: IPaginationFilters | undefined
   }): Promise<IPagination<IDataToSave>> {
     const where: any = {}
-    if (filters?.firstName) {
+    if (filters?.firstName)
       where['firstName'] = {
         $regex: filters.firstName,
         $options: 'i',
       }
-    }
-    if (filters?.lastName) {
+
+    if (filters?.lastName)
       where['lastName'] = {
         $regex: filters.lastName,
         $options: 'i',
       }
-    }
-    if (filters?.phoneNumber) {
+
+    if (filters?.phoneNumber)
       where['phoneNumber'] = {
         $regex: filters.phoneNumber,
         $options: 'i',
       }
-    }
-    if (filters?.identificationNumber) {
+
+    if (filters?.identificationNumber)
       where['identificationNumber'] = {
         $regex: filters.identificationNumber,
         $options: 'i',
       }
-    }
-    if (filters?.city) {
+
+    if (filters?.city)
       where['city'] = {
         $regex: filters.city,
         $options: 'i',
       }
-    }
-    if (filters?.email) {
+
+    if (filters?.email)
       where['email'] = {
         $regex: filters.email,
         $options: 'i',
       }
-    }
-    return pageBuilder(RegistrationRequest, { limit, page, where })
+
+    return await pageBuilder<IDataToSave>(RegistrationRequest, {
+      limit,
+      page,
+      where,
+    })
   }
   private async processFile(files: {
     [fieldname: string]: Express.Multer.File[]

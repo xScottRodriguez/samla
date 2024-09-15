@@ -20,9 +20,9 @@ const logger = winston.createLogger({
           null,
           2,
         )}`
-        if (Object.keys(meta).length) {
+        if (Object.keys(meta).length)
           log += `\n${JSON.stringify(meta, null, 2)}`
-        }
+
         return log
       },
     ),

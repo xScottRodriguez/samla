@@ -1,4 +1,4 @@
-// Define la interfaz para el documento
+import type { Express } from 'express'
 interface IRegistrationRequest {
   firstName: string
   lastName: string

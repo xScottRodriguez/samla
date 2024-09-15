@@ -1,6 +1,7 @@
-import { IPagination } from 'interfaces'
-import { HttpStatusCode, HttpStatusMessage } from '../errors'
 import { Response } from 'express'
+import { IPagination } from 'interfaces'
+
+import { HttpStatusCode, HttpStatusMessage } from '../errors'
 
 // Tipos para la paginación
 
@@ -16,7 +17,7 @@ type StatusError = Exclude<HttpStatusCode, StatusSuccess | HttpStatusCode.OK>
 type StatusCode = StatusSuccess | StatusError
 
 // Tipos para la respuesta exitosa
-interface SuccessResponse<T> {
+interface ISuccessResponse<T> {
   status: StatusCode
   message: string
   data: T | null
@@ -25,14 +26,14 @@ interface SuccessResponse<T> {
 }
 
 // Tipos para la respuesta con error
-interface ErrorResponse {
+interface IErrorResponse {
   status: StatusCode
   message: string
   data: null
   errors: { msg: string; path?: string }[]
 }
 
-interface SuccessResponseProps<T> {
+interface ISuccessResponseProps<T> {
   res: Response
   data: T | null
   message?: string
@@ -40,20 +41,20 @@ interface SuccessResponseProps<T> {
   meta?: Omit<IPagination<T>, 'data'>
 }
 
-interface ErrorResponseProps {
+interface IErrorResponseProps {
   res: Response
   message: string
   errors: { msg: string; path?: string }[]
   statusCode: StatusCode
 }
-const successResponse = <T>({
+const SuccessResponse = <T>({
   data,
   message = HttpStatusMessage.OK,
   res,
   statusCode = HttpStatusCode.Created,
   meta,
-}: SuccessResponseProps<T>) => {
-  const response: SuccessResponse<T> = {
+}: ISuccessResponseProps<T>) => {
+  const response: ISuccessResponse<T> = {
     status: statusCode,
     message,
     data,
@@ -64,13 +65,13 @@ const successResponse = <T>({
   return res.status(statusCode).json(response)
 }
 
-const errorResponse = ({
+const ErrorResponse = ({
   res,
   message = 'An error occurred',
   errors = [],
   statusCode = HttpStatusCode.BadRequest,
-}: ErrorResponseProps) => {
-  const response: ErrorResponse = {
+}: IErrorResponseProps) => {
+  const response: IErrorResponse = {
     status: statusCode,
     message,
     data: null,
@@ -80,4 +81,4 @@ const errorResponse = ({
   return res.status(statusCode).json(response)
 }
 
-export { successResponse, errorResponse }
+export { SuccessResponse, ErrorResponse }
