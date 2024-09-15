@@ -1,5 +1,12 @@
 import { RegistrationRequest } from '../models'
-import { IDataToSave, IFileNames, IPagination, IRegistrationRequest, TFiles } from '../interfaces'
+import {
+  IDataToSave,
+  IFileNames,
+  IPagination,
+  IPaginationFilters,
+  IRegistrationRequest,
+  TFiles,
+} from '../interfaces'
 import { ApiError } from '../errors'
 import { getRandomUuid, logger, pageBuilder } from '../utils'
 import { awsService } from './aws-s3.service'
@@ -35,8 +42,53 @@ class AuthService {
     }
   }
 
-  getRegistrationRequests(): Promise<IPagination<IDataToSave>> {
-    return pageBuilder(RegistrationRequest, { limit: 10, page: 1, where: {} })
+  getRegistrationRequests({
+    limit,
+    page,
+    filters,
+  }: {
+    limit: number
+    page: number
+    filters: IPaginationFilters | undefined
+  }): Promise<IPagination<IDataToSave>> {
+    const where: any = {}
+    if (filters?.firstName) {
+      where['firstName'] = {
+        $regex: filters.firstName,
+        $options: 'i',
+      }
+    }
+    if (filters?.lastName) {
+      where['lastName'] = {
+        $regex: filters.lastName,
+        $options: 'i',
+      }
+    }
+    if (filters?.phoneNumber) {
+      where['phoneNumber'] = {
+        $regex: filters.phoneNumber,
+        $options: 'i',
+      }
+    }
+    if (filters?.identificationNumber) {
+      where['identificationNumber'] = {
+        $regex: filters.identificationNumber,
+        $options: 'i',
+      }
+    }
+    if (filters?.city) {
+      where['city'] = {
+        $regex: filters.city,
+        $options: 'i',
+      }
+    }
+    if (filters?.email) {
+      where['email'] = {
+        $regex: filters.email,
+        $options: 'i',
+      }
+    }
+    return pageBuilder(RegistrationRequest, { limit, page, where })
   }
   private async processFile(files: {
     [fieldname: string]: Express.Multer.File[]

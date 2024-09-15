@@ -1,5 +1,5 @@
 // Define la interfaz para el documento
-export interface IRegistrationRequest {
+interface IRegistrationRequest {
   firstName: string
   lastName: string
   email: string
@@ -12,39 +12,67 @@ export interface IRegistrationRequest {
   monthlyIncome: number
 }
 
-export type TFiles =
+type TFiles =
   | {
       [fieldname: string]: Express.Multer.File[]
     }
   | Express.Multer.File[]
   | undefined
 
-export interface IFileNames {
+interface IFileNames {
   [key: string]: string
 }
-export interface IDataToSave extends IRegistrationRequest {
+interface IDataToSave extends IRegistrationRequest {
   identificationFront: string
   identificationBack: string
   selfie: string
 }
 
-export type TNormalizedFiles = {
+type TNormalizedFiles = {
   [fieldname: string]: Express.Multer.File[]
 }
 
-export interface IPaginationOptions {
+interface IPaginationOptions {
   limit?: number
   page?: number
   where: unknown
   orderBy?: unknown
 }
-export interface IPageResponse {
+interface IPageResponse {
   prev: number | null
   next: number | null
   count: number
 }
-export interface IPagination<T> {
+interface IPagination<T> {
   data: T[]
   total: number
   page: IPageResponse
+}
+
+interface IPaginationFilters {
+  firstName?: string
+  lastName?: number
+  phoneNumber?: string
+  identificationNumber?: string
+  city?: string
+  email?: string
+}
+
+interface IPaginationQuery {
+  page: number
+  limit: number
+  filters?: IPaginationFilters
+}
+
+export {
+  IPaginationQuery,
+  IPaginationFilters,
+  IPaginationOptions,
+  IPagination,
+  IPageResponse,
+  IDataToSave,
+  IFileNames,
+  IRegistrationRequest,
+  TFiles,
+  TNormalizedFiles,
 }

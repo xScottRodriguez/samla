@@ -5,6 +5,7 @@ import { HttpStatusCode } from '../errors'
 import {
   IDataToSave,
   IPagination,
+  IPaginationQuery,
   IRegistrationRequest,
   TNormalizedFiles,
 } from 'interfaces'
@@ -52,8 +53,18 @@ class AuthController {
     next: NextFunction,
   ) {
     try {
+      const {
+        limit,
+        page: pageFilter,
+        filters,
+      } = req.query as unknown as IPaginationQuery
+
       const { data, page, total }: IPagination<IDataToSave> =
-        await authService.getRegistrationRequests()
+        await authService.getRegistrationRequests({
+          limit: Number(limit),
+          page: Number(pageFilter),
+          filters,
+        })
 
       return successResponse({
         res,
