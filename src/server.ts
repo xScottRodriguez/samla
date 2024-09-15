@@ -1,10 +1,12 @@
 import cors from 'cors'
 import express from 'express'
-import { envs } from './config'
-import { logger } from './utils'
+import passport from 'passport'
+
+import { configurePassport, envs } from './config'
 import { connectDB } from './database'
-import { authRoutes } from './routes'
 import { errorHandler } from './middlewares'
+import { authRoutes } from './routes'
+import { logger } from './utils'
 export class Server {
   private app: express.Application
   constructor() {
@@ -13,6 +15,7 @@ export class Server {
     this.middleware()
     this.routes()
     this.errorHandling()
+    configurePassport()
   }
 
   public start(): void {
@@ -38,6 +41,7 @@ export class Server {
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(express.json())
     this.app.use(cors())
+    this.app.use(passport.initialize())
     logger.info('Middleware configured')
   }
 

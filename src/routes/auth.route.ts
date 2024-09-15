@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { IRegistrationRequest } from 'interfaces'
 import multer from 'multer'
+import passport from 'passport'
 
 import { tenMegas } from '../config'
 import { authController } from '../controllers'
@@ -44,6 +45,7 @@ class AuthRoutes {
     this.router.post('/login', authController.login)
     this.router.get(
       '/registration-requests',
+      [passport.authenticate('jwt', { session: false })],
       [validateFields(paginationSchema)],
       authController.getRegistrationRequests,
     )

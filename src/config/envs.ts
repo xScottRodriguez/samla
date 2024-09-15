@@ -9,12 +9,19 @@ interface IEnvConfig {
   AWS_ENDPOINT: string
   AWS_REGION: string
   AWS_BUCKET_NAME: string
+  JWT_SECRET: string
 }
 
 const envVarsSchema = joi
   .object({
     PORT: joi.number().required(),
     DATABASE_URL: joi.string().required(),
+    AWS_ACCESS_KEY_ID: joi.string().required(),
+    AWS_SECRET_ACCESS_KEY: joi.string().required(),
+    AWS_ENDPOINT: joi.string().required(),
+    AWS_REGION: joi.string().required(),
+    AWS_BUCKET_NAME: joi.string().required(),
+    JWT_SECRET: joi.string().required(),
   })
   .unknown(true)
 
@@ -32,4 +39,5 @@ export const envs = {
   awsEndpoint: envVars.AWS_ENDPOINT,
   awsRegion: envVars.AWS_REGION,
   awsBucketName: envVars.AWS_BUCKET_NAME,
+  jwtSecret: envVars.JWT_SECRET,
 }
