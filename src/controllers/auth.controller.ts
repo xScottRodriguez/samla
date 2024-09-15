@@ -8,7 +8,6 @@ import { normalizedFiles, SuccessResponse } from '../utils'
 class AuthController {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
-      // const data = authService.registry(req.body)
       return SuccessResponse({
         res,
         data: null,
