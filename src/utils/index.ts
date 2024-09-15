@@ -18,6 +18,19 @@ const normalizedFiles = (files: TFiles): TNormalizedFiles => {
   return normalized
 }
 
+interface IResponse {
+  take: number
+  skip: number
+}
+
+const getTakeAndSkip = (limit: number, page: number): IResponse => {
+  const offset = (page - 1) * limit
+  return {
+    take: limit,
+    skip: offset,
+  }
+}
 export * from './logger'
 export * from './response-helper'
-export { getRandomUuid, normalizedFiles }
+export { default as pageBuilder } from './page-builder'
+export { getRandomUuid, normalizedFiles, getTakeAndSkip }

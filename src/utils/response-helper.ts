@@ -1,13 +1,8 @@
+import { IPagination } from 'interfaces'
 import { HttpStatusCode, HttpStatusMessage } from '../errors'
 import { Response } from 'express'
 
 // Tipos para la paginación
-interface Pagination {
-  currentPage: number
-  pageSize: number
-  totalPages: number
-  totalItems: number
-}
 
 type StatusSuccess =
   | HttpStatusCode.OK
@@ -26,7 +21,7 @@ interface SuccessResponse<T> {
   message: string
   data: T | null
   errors: null
-  pagination?: Pagination // Se incluye solo si hay paginación
+  pagination?: Omit<IPagination<T>, 'data'>
 }
 
 // Tipos para la respuesta con error
@@ -42,7 +37,7 @@ interface SuccessResponseProps<T> {
   data: T | null
   message?: string
   statusCode?: StatusCode
-  pagination?: Pagination
+  meta?: Omit<IPagination<T>, 'data'>
 }
 
 interface ErrorResponseProps {
@@ -56,14 +51,14 @@ const successResponse = <T>({
   message = HttpStatusMessage.OK,
   res,
   statusCode = HttpStatusCode.Created,
-  pagination,
+  meta,
 }: SuccessResponseProps<T>) => {
   const response: SuccessResponse<T> = {
     status: statusCode,
     message,
     data,
     errors: null,
-    ...(pagination && { pagination }), // Solo se añade si existe paginación
+    ...(meta && { meta }),
   }
 
   return res.status(statusCode).json(response)

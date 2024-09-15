@@ -1,12 +1,11 @@
 import { validateFields } from '../middlewares'
 import { authController } from '../controllers'
-import { NextFunction, Request, Response, Router } from 'express'
+import { Router } from 'express'
 import { RegistrationSchema } from './validations'
 import { IRegistrationRequest } from 'interfaces'
 import multer from 'multer'
 import { tenMegas } from '../config'
-import { ApiError, HttpStatusMessage } from '../errors'
-import { logger } from '../utils'
+import { paginationSchema } from './validations/pagination.validation'
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -44,6 +43,11 @@ class AuthRoutes {
       authController.register,
     )
     this.router.post('/login', authController.login)
+    this.router.get(
+      '/registration-requests',
+      [validateFields(paginationSchema)],
+      authController.getRegistrationRequests,
+    )
   }
 }
 

@@ -31,3 +31,20 @@ export interface IDataToSave extends IRegistrationRequest {
 export type TNormalizedFiles = {
   [fieldname: string]: Express.Multer.File[]
 }
+
+export interface IPaginationOptions {
+  limit?: number
+  page?: number
+  where: unknown
+  orderBy?: unknown
+}
+export interface IPageResponse {
+  prev: number | null
+  next: number | null
+  count: number
+}
+export interface IPagination<T> {
+  data: T[]
+  total: number
+  page: IPageResponse
+}

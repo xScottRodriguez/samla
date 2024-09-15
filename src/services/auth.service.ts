@@ -1,7 +1,7 @@
 import { RegistrationRequest } from '../models'
-import { IFileNames, IRegistrationRequest, TFiles } from '../interfaces'
+import { IDataToSave, IFileNames, IPagination, IRegistrationRequest, TFiles } from '../interfaces'
 import { ApiError } from '../errors'
-import { getRandomUuid, logger } from '../utils'
+import { getRandomUuid, logger, pageBuilder } from '../utils'
 import { awsService } from './aws-s3.service'
 
 class AuthService {
@@ -33,6 +33,10 @@ class AuthService {
         { msg: err.message, path: '' },
       ])
     }
+  }
+
+  getRegistrationRequests(): Promise<IPagination<IDataToSave>> {
+    return pageBuilder(RegistrationRequest, { limit: 10, page: 1, where: {} })
   }
   private async processFile(files: {
     [fieldname: string]: Express.Multer.File[]

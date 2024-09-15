@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from 'express'
 import { authService } from '../services'
-import { logger, normalizedFiles, successResponse } from '../utils'
+import { logger, normalizedFiles, pageBuilder, successResponse } from '../utils'
 import { HttpStatusCode } from '../errors'
-import { TNormalizedFiles } from 'interfaces'
+import {
+  IDataToSave,
+  IPagination,
+  IRegistrationRequest,
+  TNormalizedFiles,
+} from 'interfaces'
 
 type TFiles =
   | {
@@ -35,6 +40,30 @@ class AuthController {
         data,
         message: 'Registro creado exitosamente',
         statusCode: HttpStatusCode.Created,
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getRegistrationRequests(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const { data, page, total }: IPagination<IDataToSave> =
+        await authService.getRegistrationRequests()
+
+      return successResponse({
+        res,
+        data,
+        meta: {
+          page,
+          total,
+        },
+        message: 'Registros obtenidos exitosamente',
+        statusCode: HttpStatusCode.OK,
       })
     } catch (error) {
       next(error)
