@@ -6,7 +6,7 @@ import passport from 'passport'
 import { tenMegas } from '../config'
 import { authController } from '../controllers'
 import { validateFields } from '../middlewares'
-import { RegistrationSchema } from './validations'
+import { loginSchema, RegistrationSchema } from './validations'
 import { paginationSchema } from './validations/pagination.validation'
 
 const upload = multer({
@@ -42,7 +42,11 @@ class AuthRoutes {
       ],
       authController.register,
     )
-    this.router.post('/login', authController.login)
+    this.router.post(
+      '/login',
+      validateFields(loginSchema),
+      authController.login,
+    )
     this.router.get(
       '/registration-requests',
       [passport.authenticate('jwt', { session: false })],

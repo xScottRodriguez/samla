@@ -1,5 +1,10 @@
+import { Auth } from '../models'
+
 export class UserService {
   async findById(id: string) {
-    return id
+    const user = await Auth.findById({
+      _id: id,
+    })
+    return user
   }
 }

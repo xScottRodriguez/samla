@@ -6,12 +6,14 @@ import { UserService } from '../services'
 import { logger } from '../utils'
 
 interface IJwtPayload {
-  sub: string
+  id: string
+  email: string
   iat: number
+  exp: number
 }
 
 export class JwtStrategy {
-  constructor(passport: PassportStatic, userService: UserService) {
+  constructor(passport: PassportStatic, _userService: UserService) {
     const options: StrategyOptions = {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: envs.jwtSecret,
@@ -20,8 +22,8 @@ export class JwtStrategy {
     passport.use(
       new Strategy(options, async (payload: IJwtPayload, done) => {
         try {
-          const user = await userService.findById(payload.sub)
-          if (!user) return done(null, false)
+          const user = await _userService.findById(payload.id)
+          if (!payload) return done(null, false)
 
           return done(null, user)
         } catch (error) {

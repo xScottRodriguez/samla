@@ -1,22 +1,48 @@
 import { NextFunction, Request, Response } from 'express'
 import { IDataToSave, IPagination, IPaginationQuery } from 'interfaces'
+import jwt from 'jsonwebtoken'
 
+import { envs } from '../config'
 import { ApiError, HttpStatusCode } from '../errors'
+import { Auth } from '../models'
 import { authService } from '../services'
 import { logger, normalizedFiles, SuccessResponse } from '../utils'
-
+interface ICredentials {
+  email: string
+  password: string
+}
 class AuthController {
-  async login(req: Request, res: Response, next: NextFunction) {
-    try {
-      return SuccessResponse({
-        res,
-        data: null,
-        message: 'User registered successfully',
-        statusCode: HttpStatusCode.Created,
-      })
-    } catch (error) {
-      next(error)
+  async login(req: Request, res: Response, _next: NextFunction) {
+    const body = req.body as ICredentials
+    const user = await Auth.findOne({
+      email: body.email,
+      password: body.password,
+    }).exec()
+
+    if (!user) throw ApiError.unauthorized('Credenciales incorrectas')
+
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      envs.jwtSecret,
+      {
+        expiresIn: '1h', // El token expira en 1 hora
+      },
+    )
+
+    const userJson = user.toJSON()
+    const userSerialized = {
+      id: userJson._id,
+      email: userJson.email,
     }
+    return SuccessResponse({
+      res,
+      data: {
+        user: userSerialized,
+        token,
+      },
+      message: 'Usuario obtenido exitosamente',
+      statusCode: HttpStatusCode.OK,
+    })
   }
   async register(req: Request, res: Response, next: NextFunction) {
     try {

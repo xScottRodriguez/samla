@@ -17,4 +17,8 @@ const RegistrationSchema = Joi.object({
   monthlyIncome: Joi.number().positive().required(),
 }).required()
 
-export { RegistrationSchema }
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+}).required()
+export { RegistrationSchema, loginSchema }

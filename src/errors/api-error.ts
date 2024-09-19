@@ -52,4 +52,11 @@ export class ApiError extends Error {
   ) {
     return new ApiError(HttpStatusCode.InternalServerError, message, errors)
   }
+
+  static unauthorized(
+    message: string,
+    errors: { msg: string; path?: string }[] = [],
+  ) {
+    return new ApiError(HttpStatusCode.Unauthorized, message, errors)
+  }
 }
