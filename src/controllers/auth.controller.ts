@@ -13,36 +13,40 @@ interface ICredentials {
 }
 class AuthController {
   async login(req: Request, res: Response, _next: NextFunction) {
-    const body = req.body as ICredentials
-    const user = await Auth.findOne({
-      email: body.email,
-      password: body.password,
-    }).exec()
+    try {
+      const body = req.body as ICredentials
+      const user = await Auth.findOne({
+        email: body.email,
+        password: body.password,
+      }).exec()
 
-    if (!user) throw ApiError.unauthorized('Credenciales incorrectas')
+      if (!user) throw ApiError.unauthorized('Credenciales incorrectas')
 
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      envs.jwtSecret,
-      {
-        expiresIn: '1h', // El token expira en 1 hora
-      },
-    )
+      const token = jwt.sign(
+        { id: user._id, email: user.email },
+        envs.jwtSecret,
+        {
+          expiresIn: '1h', // El token expira en 1 hora
+        },
+      )
 
-    const userJson = user.toJSON()
-    const userSerialized = {
-      id: userJson._id,
-      email: userJson.email,
+      const userJson = user.toJSON()
+      const userSerialized = {
+        id: userJson._id,
+        email: userJson.email,
+      }
+      return SuccessResponse({
+        res,
+        data: {
+          user: userSerialized,
+          token,
+        },
+        message: 'Usuario obtenido exitosamente',
+        statusCode: HttpStatusCode.OK,
+      })
+    } catch (error) {
+      _next(error)
     }
-    return SuccessResponse({
-      res,
-      data: {
-        user: userSerialized,
-        token,
-      },
-      message: 'Usuario obtenido exitosamente',
-      statusCode: HttpStatusCode.OK,
-    })
   }
   async register(req: Request, res: Response, next: NextFunction) {
     try {
