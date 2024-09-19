@@ -27,7 +27,7 @@ const envVarsSchema = joi
 
 const { error, value } = envVarsSchema.validate(process.env)
 
-if (error) throw new Error(`Config validation error: ${error.message} QLO`)
+if (error) throw new Error(`Config validation error: ${error.message} `)
 
 const envVars: IEnvConfig = value
 
