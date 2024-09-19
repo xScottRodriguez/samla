@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
 import { IDataToSave, IPagination, IPaginationQuery } from 'interfaces'
 
-import { HttpStatusCode } from '../errors'
+import { ApiError, HttpStatusCode } from '../errors'
 import { authService } from '../services'
-import { normalizedFiles, SuccessResponse } from '../utils'
+import { logger, normalizedFiles, SuccessResponse } from '../utils'
 
 class AuthController {
   async login(req: Request, res: Response, next: NextFunction) {
@@ -21,6 +21,10 @@ class AuthController {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
       const { files } = req
+
+      if (!files || Object.keys(files).length === 0)
+        throw ApiError.badRequest('No se cargaron archivos')
+
       const filesNormalized = normalizedFiles(files)
 
       const data = await authService.registry(req.body, filesNormalized)
@@ -31,6 +35,7 @@ class AuthController {
         statusCode: HttpStatusCode.Created,
       })
     } catch (error) {
+      logger.debug('Error en el registro:', error)
       next(error)
     }
   }

@@ -14,8 +14,8 @@ export class ApiError extends Error {
     super(message)
     this.status = status
     this.errors = errors
-    Object.setPrototypeOf(this, new.target.prototype) // Fijar el prototipo para que funcione bien con instanceof
-    Error.captureStackTrace(this) // Capturar el stack trace
+    Object.setPrototypeOf(this, new.target.prototype)
+    Error.captureStackTrace(this)
   }
 
   static notFound(

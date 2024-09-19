@@ -29,12 +29,15 @@ class AuthService {
         identificationBack,
         selfie,
       }
-      return await RegistrationRequest.create<IRegistrationRequest>(dataToSave)
+      const registrationRequestToSave =
+        await RegistrationRequest.create<IRegistrationRequest>(dataToSave)
+
+      return registrationRequestToSave.save()
     } catch (error) {
       const err = error as Error
       logger.error({
         label: 'AuthService',
-        message: err.message,
+        message: err,
         method: 'AuthService.registry',
       })
       throw ApiError.internalServer('Ocurrio un error Creando registro', [
@@ -100,7 +103,11 @@ class AuthService {
   }) {
     const fileNames: IFileNames = {}
     for (const key in files) {
-      const file = files[key][0]
+      const file = files?.[key]?.[0]
+
+      if (!file)
+        throw ApiError.badRequest(`No se cargaron archivos para ${key}`)
+
       const fileName = `${getRandomUuid()}-${file.originalname}`
       fileNames[key] = fileName
       const { key: filePath } = await awsService.uploadFile({
