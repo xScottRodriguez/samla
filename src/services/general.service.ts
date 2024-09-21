@@ -1,5 +1,8 @@
+import mongoose from 'mongoose'
+
 import { Departments, Documents, Municipalities } from '../models'
 
+const ObjectId = mongoose.Types.ObjectId
 class GeneralService {
   async documents() {
     return await Documents.find()
@@ -7,8 +10,10 @@ class GeneralService {
   async departments() {
     return await Departments.find()
   }
-  async municipality() {
-    return await Municipalities.find()
+  async municipality(departmentId: string) {
+    return await Municipalities.find({
+      departmentId: new ObjectId(departmentId),
+    })
   }
 }
 

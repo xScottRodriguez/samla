@@ -9,4 +9,4 @@ const documentSchema = new Schema<IDocument>({
 })
 
 // Cambia 'documents' por el nombre en plural o singular que prefieras
-export const Documents = mongoose.model<IDocument>('Document', documentSchema)
+export const Documents = mongoose.model<IDocument>('documents', documentSchema)

@@ -4,7 +4,7 @@ import Joi from 'joi'
 import { HttpStatusCode, HttpStatusMessage } from '../errors'
 import { ErrorResponse } from '../utils'
 
-enum Source {
+export enum Source {
   BODY = 'body',
   QUERY = 'query',
 }

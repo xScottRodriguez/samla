@@ -10,6 +10,6 @@ const municipalitySchema = new Schema({
 })
 
 export const Municipalities = mongoose.model(
-  'Municipalities',
+  'municipalities',
   municipalitySchema,
 )

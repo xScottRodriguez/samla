@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import passport from 'passport'
 
 import { generalController } from '../controllers'
+import { Source, validateFields } from '../middlewares'
+import { queryparams } from './validations'
 
 class GeneralRoute {
   public router: Router
@@ -12,17 +13,13 @@ class GeneralRoute {
   }
 
   private init() {
+    this.router.get('/documents', generalController.documents)
+    this.router.get('/departments', generalController.departments)
     this.router.get(
-      '/documents',
-      [passport.authenticate('jwt', { session: false })],
-      generalController.documents,
+      '/municipalities',
+      [validateFields(queryparams, Source.QUERY)],
+      generalController.municipalities,
     )
-    this.router.get(
-      '/departments',
-      [passport.authenticate('jwt', { session: false })],
-      generalController.documents,
-    )
-    this.router.get('/municipalities', generalController.municipalities)
   }
 }
 

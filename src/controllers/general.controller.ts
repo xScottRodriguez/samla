@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 
 import { HttpStatusCode } from '../errors'
-import { generalService } from '../services'
+import { generalService } from '../services/'
 import { SuccessResponse } from '../utils'
 
 class GeneralController {
@@ -33,7 +33,8 @@ class GeneralController {
   }
   async municipalities(req: Request, res: Response, next: NextFunction) {
     try {
-      const data = await generalService.municipality()
+      const { departmentId = '' } = req.query
+      const data = await generalService.municipality(departmentId as string)
       return SuccessResponse({
         res,
         data,
