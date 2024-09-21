@@ -5,7 +5,7 @@ import passport from 'passport'
 import { configurePassport, envs } from './config'
 import { connectDB } from './database'
 import { errorHandler } from './middlewares'
-import { authRoutes } from './routes'
+import { authRoutes, generalRoute } from './routes'
 import { seeder } from './seeders'
 import { logger } from './utils'
 export class Server {
@@ -53,6 +53,7 @@ export class Server {
 
   private routes(): void {
     this.app.use('/api/auth', authRoutes)
+    this.app.use('/api/generals', generalRoute)
   }
 
   private errorHandling(): void {

@@ -27,9 +27,9 @@ class AuthRoutes {
 
   constructor() {
     this.router = Router()
-    this.routes()
+    this.init()
   }
-  public routes(): void {
+  public init(): void {
     this.router.post(
       '/register',
       [
