@@ -29,7 +29,7 @@ class Seeder {
     const existsData = await RegistrationRequest.find({})
 
     // write the validation if the data is minor than 100 and mayor than 10
-    if (existsData.length < 100 && existsData.length > 50) {
+    if (existsData.length <= 300) {
       logger.info('Data already exists')
       return
     }

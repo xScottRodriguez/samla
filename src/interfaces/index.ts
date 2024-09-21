@@ -10,6 +10,9 @@ interface IRegistrationRequest {
   city: string
   address: string
   monthlyIncome: number
+  identificationFront: string
+  identificationBack: string
+  selfie: string
 }
 
 type TFiles =

@@ -2,7 +2,6 @@ import type { Express } from 'express'
 
 import { ApiError } from '../errors'
 import {
-  IDataToSave,
   IFileNames,
   IPagination,
   IPaginationFilters,
@@ -54,7 +53,7 @@ class AuthService {
     limit: number
     page: number
     filters: IPaginationFilters | undefined
-  }): Promise<IPagination<IDataToSave>> {
+  }): Promise<IPagination<IRegistrationRequest>> {
     const where: any = {}
     if (filters?.firstName)
       where['firstName'] = {
@@ -92,11 +91,37 @@ class AuthService {
         $options: 'i',
       }
 
-    return await pageBuilder<IDataToSave>(RegistrationRequest, {
-      limit,
-      page,
-      where,
-    })
+    const { data, ...rest } = await pageBuilder<IRegistrationRequest>(
+      RegistrationRequest,
+      {
+        limit,
+        page,
+        where,
+      },
+    )
+
+    const newData = await Promise.all(
+      data.map(async (item: any) => {
+        const itemData = item?.['_doc'] as IRegistrationRequest
+        const front = await awsService.downloadFile(
+          itemData.identificationFront,
+        )
+        const back = await awsService.downloadFile(itemData.identificationBack)
+        const selfie = await awsService.downloadFile(itemData.selfie)
+
+        return {
+          ...itemData,
+          identificationFront: front,
+          identificationBack: back,
+          selfie,
+        }
+      }),
+    )
+
+    return {
+      data: newData,
+      ...rest,
+    }
   }
   private async processFile(files: {
     [fieldname: string]: Express.Multer.File[]
