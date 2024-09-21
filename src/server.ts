@@ -18,6 +18,7 @@ export class Server {
     this.errorHandling()
     configurePassport()
     this.seedAdmin()
+    this.seedData()
   }
 
   public start(): void {
@@ -60,5 +61,8 @@ export class Server {
 
   private seedAdmin(): void {
     seeder.seedAdmin()
+  }
+  private seedData(): void {
+    seeder.seed()
   }
 }
