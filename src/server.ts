@@ -17,7 +17,7 @@ export class Server {
     this.routes()
     this.errorHandling()
     configurePassport()
-    this.seedAdmin()
+
     this.seedData()
   }
 
@@ -59,10 +59,7 @@ export class Server {
     this.app.use(errorHandler)
   }
 
-  private seedAdmin(): void {
-    seeder.seedAdmin()
-  }
   private seedData(): void {
-    seeder.seed()
+    seeder.seedAll()
   }
 }

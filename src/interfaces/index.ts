@@ -67,7 +67,20 @@ interface IPaginationQuery {
   filters?: IPaginationFilters
 }
 
+interface ICommon {
+  name: string
+}
+
+interface IDepartament extends ICommon {
+  _id: string
+}
+
+interface IMunicipality extends ICommon {
+  departmentId: string
+}
 export {
+  IMunicipality,
+  ICommon,
   IPaginationQuery,
   IPaginationFilters,
   IPaginationOptions,
@@ -78,4 +91,5 @@ export {
   IRegistrationRequest,
   TFiles,
   TNormalizedFiles,
+  IDepartament,
 }

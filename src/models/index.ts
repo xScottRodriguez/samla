@@ -1,2 +1,5 @@
 export * from './registrationRequest.model'
 export * from './auth.model'
+export * from './documents.model'
+export * from './departaments.model'
+export * from './municipality.model'
