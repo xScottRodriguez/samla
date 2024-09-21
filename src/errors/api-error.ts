@@ -1,6 +1,6 @@
 // src/errors/ApiError.ts
 
-import { HttpStatusCode } from './http-status-codes'
+import { HttpStatusCode, HttpStatusMessage } from './http-status-codes'
 
 export class ApiError extends Error {
   status: number
@@ -57,6 +57,11 @@ export class ApiError extends Error {
     message: string,
     errors: { msg: string; path?: string }[] = [],
   ) {
-    return new ApiError(HttpStatusCode.Unauthorized, message, errors)
+    console.log({ message })
+    return new ApiError(
+      HttpStatusCode.Unauthorized,
+      message.length ? message : HttpStatusMessage.Unauthorized,
+      errors,
+    )
   }
 }

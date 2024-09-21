@@ -6,6 +6,7 @@ import { configurePassport, envs } from './config'
 import { connectDB } from './database'
 import { errorHandler } from './middlewares'
 import { authRoutes } from './routes'
+import { seeder } from './seeders'
 import { logger } from './utils'
 export class Server {
   private app: express.Application
@@ -16,6 +17,7 @@ export class Server {
     this.routes()
     this.errorHandling()
     configurePassport()
+    this.seedAdmin()
   }
 
   public start(): void {
@@ -54,5 +56,9 @@ export class Server {
 
   private errorHandling(): void {
     this.app.use(errorHandler)
+  }
+
+  private seedAdmin(): void {
+    seeder.seedAdmin()
   }
 }

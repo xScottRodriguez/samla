@@ -20,13 +20,19 @@ class AuthController {
         password: body.password,
       }).exec()
 
-      if (!user) throw ApiError.unauthorized('Credenciales incorrectas')
+      if (!user)
+        throw ApiError.unauthorized('', [
+          {
+            msg: 'Credenciales incorrectas',
+            path: '',
+          },
+        ])
 
       const token = jwt.sign(
         { id: user._id, email: user.email },
         envs.jwtSecret,
         {
-          expiresIn: '1h', // El token expira en 1 hora
+          expiresIn: '1h',
         },
       )
 
