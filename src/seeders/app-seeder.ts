@@ -102,34 +102,141 @@ class Seeder {
       { name: 'Ahuachapán', departmentId: 'Ahuachapán' },
       { name: 'Apaneca', departmentId: 'Ahuachapán' },
       { name: 'Atiquizaya', departmentId: 'Ahuachapán' },
+      { name: 'El Refugio', departmentId: 'Ahuachapán' },
+      { name: 'San Lorenzo', departmentId: 'Ahuachapán' },
+      { name: 'San Francisco Menéndez', departmentId: 'Ahuachapán' },
+      { name: 'Jujutla', departmentId: 'Ahuachapán' },
+      { name: 'Tacuba', departmentId: 'Ahuachapán' },
+      { name: 'Concepción de Ataco', departmentId: 'Ahuachapán' },
+      { name: 'El Sunza', departmentId: 'Ahuachapán' },
+
       { name: 'Santa Ana', departmentId: 'Santa Ana' },
       { name: 'Coatepeque', departmentId: 'Santa Ana' },
+      { name: 'Chalchuapa', departmentId: 'Santa Ana' },
+      { name: 'La Libertad', departmentId: 'Santa Ana' },
+      { name: 'El Congo', departmentId: 'Santa Ana' },
+      { name: 'San Sebastián Salitrillo', departmentId: 'Santa Ana' },
+      { name: 'Santa Rosa Guachipilín', departmentId: 'Santa Ana' },
+      { name: 'Candelaria de la Frontera', departmentId: 'Santa Ana' },
+      { name: 'San Antonio Los Ranchos', departmentId: 'Santa Ana' },
+      { name: 'El Porvenir', departmentId: 'Santa Ana' },
+
       { name: 'San Salvador', departmentId: 'San Salvador' },
-      { name: 'Santa Tecla', departmentId: 'La Libertad' },
-      { name: 'San Vicente', departmentId: 'San Vicente' },
-      { name: 'Usulután', departmentId: 'Usulután' },
-      { name: 'San Miguel', departmentId: 'San Miguel' },
-      { name: 'La Unión', departmentId: 'La Unión' },
-      { name: 'Chalatenango', departmentId: 'Chalatenango' },
-      { name: 'San Francisco Gotera', departmentId: 'Morazán' },
-      { name: 'Cojutepeque', departmentId: 'Cuscatlán' },
+      { name: 'Santa Tecla', departmentId: 'San Salvador' },
+      { name: 'Mejicanos', departmentId: 'San Salvador' },
+      { name: 'Soyapango', departmentId: 'San Salvador' },
+      { name: 'Ilopango', departmentId: 'San Salvador' },
+      { name: 'Apopa', departmentId: 'San Salvador' },
+      { name: 'San Marcos', departmentId: 'San Salvador' },
+      { name: 'San Martín', departmentId: 'San Salvador' },
+      { name: 'Tonacatepeque', departmentId: 'San Salvador' },
+      { name: 'Panchimalco', departmentId: 'San Salvador' },
+
       { name: 'La Libertad', departmentId: 'La Libertad' },
+      { name: 'Santa Tecla', departmentId: 'La Libertad' },
+      { name: 'Antiguo Cuscatlán', departmentId: 'La Libertad' },
+      { name: 'Nuevo Cuscatlán', departmentId: 'La Libertad' },
+      { name: 'El Sunza', departmentId: 'La Libertad' },
+      { name: 'Chiltiupán', departmentId: 'La Libertad' },
+      { name: 'Tamanique', departmentId: 'La Libertad' },
+      { name: 'Teotepeque', departmentId: 'La Libertad' },
+      { name: 'San José Villanueva', departmentId: 'La Libertad' },
+      { name: 'San Juan Opico', departmentId: 'La Libertad' },
+
+      { name: 'San Vicente', departmentId: 'San Vicente' },
+      { name: 'San Sebastián', departmentId: 'San Vicente' },
+      { name: 'Guadalupe', departmentId: 'San Vicente' },
+      { name: 'Apastepeque', departmentId: 'San Vicente' },
+      { name: 'Santa Clara', departmentId: 'San Vicente' },
+      { name: 'San Cayetano Istepeque', departmentId: 'San Vicente' },
+      { name: 'San Lorenzo', departmentId: 'San Vicente' },
+      { name: 'San Miguelito', departmentId: 'San Vicente' },
+      { name: 'Verapaz', departmentId: 'San Vicente' },
+
+      { name: 'Usulután', departmentId: 'Usulután' },
+      { name: 'Santa Elena', departmentId: 'Usulután' },
+      { name: 'Jiquilisco', departmentId: 'Usulután' },
+      { name: 'San Miguel Tepezontes', departmentId: 'Usulután' },
+      { name: 'San Juan del Gozo', departmentId: 'Usulután' },
+      { name: 'El Triunfo', departmentId: 'Usulután' },
+      { name: 'Puerto El Triunfo', departmentId: 'Usulután' },
+      { name: 'Concepción Batres', departmentId: 'Usulután' },
+      { name: 'Nueva Granada', departmentId: 'Usulután' },
+
+      { name: 'San Miguel', departmentId: 'San Miguel' },
+      { name: 'San Antonio del Mosquito', departmentId: 'San Miguel' },
+      { name: 'El Tránsito', departmentId: 'San Miguel' },
+      { name: 'La Unión', departmentId: 'San Miguel' },
+      { name: 'San Jorge', departmentId: 'San Miguel' },
+      { name: 'Nuevo Edén de San Juan', departmentId: 'San Miguel' },
+      { name: 'Ciudad Barrios', departmentId: 'San Miguel' },
+      { name: 'Chirilagua', departmentId: 'San Miguel' },
+      { name: 'El Carmen', departmentId: 'San Miguel' },
+
+      { name: 'La Unión', departmentId: 'La Unión' },
+      { name: 'San Alejo', departmentId: 'La Unión' },
+      { name: 'El Salvador del Mundo', departmentId: 'La Unión' },
+      { name: 'Conchagua', departmentId: 'La Unión' },
+      { name: 'San José', departmentId: 'La Unión' },
+      { name: 'Pasaquina', departmentId: 'La Unión' },
+      { name: 'La Reina', departmentId: 'La Unión' },
+      { name: 'Nueva Esparta', departmentId: 'La Unión' },
+      { name: 'El Carmen', departmentId: 'La Unión' },
+
+      { name: 'Chalatenango', departmentId: 'Chalatenango' },
+      { name: 'La Laguna', departmentId: 'Chalatenango' },
+      { name: 'El Paraíso', departmentId: 'Chalatenango' },
+      { name: 'San Ignacio', departmentId: 'Chalatenango' },
+      { name: 'Nombre de Dios', departmentId: 'Chalatenango' },
+      { name: 'Tejutla', departmentId: 'Chalatenango' },
+      { name: 'Santa Rita', departmentId: 'Chalatenango' },
+      { name: 'San Rafael', departmentId: 'Chalatenango' },
+      { name: 'La Palma', departmentId: 'Chalatenango' },
+
+      { name: 'San Francisco Gotera', departmentId: 'Morazán' },
+      { name: 'El Divisadero', departmentId: 'Morazán' },
+      { name: 'Guatajiagua', departmentId: 'Morazán' },
+      { name: 'Jocoro', departmentId: 'Morazán' },
+      { name: 'San Isidro', departmentId: 'Morazán' },
+      { name: 'San Simón', departmentId: 'Morazán' },
+      { name: 'Corinto', departmentId: 'Morazán' },
+      { name: 'La Unión', departmentId: 'Morazán' },
+
+      { name: 'Cojutepeque', departmentId: 'Cuscatlán' },
+      { name: 'San Ramón', departmentId: 'Cuscatlán' },
+      { name: 'El Carmen', departmentId: 'Cuscatlán' },
+      { name: 'San Pedro Perulapán', departmentId: 'Cuscatlán' },
+      { name: 'San Cristóbal', departmentId: 'Cuscatlán' },
+      { name: 'Monte San Juan', departmentId: 'Cuscatlán' },
+      { name: 'Santa Cruz Michapa', departmentId: 'Cuscatlán' },
+      { name: 'La Libertad', departmentId: 'Cuscatlán' },
+
       { name: 'Sonsonate', departmentId: 'Sonsonate' },
+      { name: 'Acajutla', departmentId: 'Sonsonate' },
+      { name: 'Juayúa', departmentId: 'Sonsonate' },
+      { name: 'Salcoatitán', departmentId: 'Sonsonate' },
+      { name: 'San Julián', departmentId: 'Sonsonate' },
+      { name: 'Santa Isabel Ishuatán', departmentId: 'Sonsonate' },
+      { name: 'San Antonio del Monte', departmentId: 'Sonsonate' },
+      { name: 'Armenia', departmentId: 'Sonsonate' },
     ]
 
     await Municipalities.deleteMany()
     const departments: IDepartament[] = await Departments.find<IDepartament>({})
 
     const mappedMunicipalities = municipalities.map((municipality) => {
-      const department = departments.find(
+      const department: IDepartament | undefined = departments.find(
         (department: IDepartament) =>
           department.name === municipality.departmentId,
       )
+      if (!department) throw new Error('Department not found')
+
       return {
         ...municipality,
-        departmentId: department?._id,
+        departmentId: department._id,
       }
     })
+
     await Municipalities.insertMany(mappedMunicipalities)
   }
 
