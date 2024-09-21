@@ -17,8 +17,6 @@ export class Server {
     this.routes()
     this.errorHandling()
     configurePassport()
-
-    this.seedData()
   }
 
   public start(): void {
@@ -35,6 +33,7 @@ export class Server {
   private async database(): Promise<void> {
     try {
       await connectDB()
+      this.seedData()
     } catch (error) {
       logger.error('Error connecting to the database:', error)
       process.exit(1)

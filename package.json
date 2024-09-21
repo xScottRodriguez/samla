@@ -7,6 +7,7 @@
     "format:fix": "prettier --write ./src/**/*.ts",
     "lint:fix": "eslint ./src/**/*.ts --fix",
     "start:dev": "ts-node-dev --respawn --transpile-only ./src/main.ts",
+    "build": "rimraf dist && tsc",
     "start": "node ./dist/main.js",
     "prepare": "husky install"
   },
@@ -27,6 +28,7 @@
     "multer": "1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "rimraf": "^6.0.1",
     "winston": "^3.14.2"
   },
   "devDependencies": {
