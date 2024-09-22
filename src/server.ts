@@ -44,7 +44,8 @@ export class Server {
     this.app.use(express.json())
     this.app.use(
       cors({
-        origin: envs.clientUrl,
+        origin: envs.clientUrl ?? '*',
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
         credentials: true,
       }),
     )
