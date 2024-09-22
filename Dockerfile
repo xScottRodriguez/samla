@@ -24,7 +24,7 @@ RUN pnpm build
 
 RUN pnpm prune --prod
 
-USER node
+# USER node
 
 FROM node:21-alpine3.19 AS prod
 
@@ -33,6 +33,7 @@ WORKDIR /usr/src/app
 
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/MOCK_DATA.json ./MOCK_DATA.json
 
 ENV NODE_ENV=production
 
