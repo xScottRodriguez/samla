@@ -9,7 +9,7 @@
     "start:dev": "ts-node-dev --respawn --transpile-only ./src/main.ts",
     "build": "rimraf dist && tsc",
     "start": "pnpm build &&   node ./dist/main.js",
-    "prepare": "husky install"
+    "prepare": "if [ \"$NODE_ENV\" = \"development\" ]; then husky install; fi"
   },
   "keywords": [],
   "author": "",
