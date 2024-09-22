@@ -4,8 +4,8 @@ RUN npm install -g pnpm
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node pnpm-lock.yaml ./
-COPY --chown=node:node package.json ./
+COPY --chown=node:node ./pnpm-lock.yaml ./
+COPY --chown=node:node ./package.json ./
 
 RUN pnpm install --frozen-lockfile
 

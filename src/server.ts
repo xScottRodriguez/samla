@@ -44,7 +44,8 @@ export class Server {
     this.app.use(express.json())
     this.app.use(
       cors({
-        origin: '*',
+        origin: envs.clientUrl,
+        credentials: true,
       }),
     )
     this.app.use(passport.initialize())

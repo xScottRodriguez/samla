@@ -10,6 +10,7 @@ interface IEnvConfig {
   AWS_REGION: string
   AWS_BUCKET_NAME: string
   JWT_SECRET: string
+  CLIENT_URL: string
 }
 
 const envVarsSchema = joi
@@ -22,6 +23,7 @@ const envVarsSchema = joi
     AWS_REGION: joi.string().required(),
     AWS_BUCKET_NAME: joi.string().required(),
     JWT_SECRET: joi.string().required(),
+    CLIENT_URL: joi.string().required(),
   })
   .unknown(true)
 
@@ -40,4 +42,5 @@ export const envs = {
   awsRegion: envVars.AWS_REGION,
   awsBucketName: envVars.AWS_BUCKET_NAME,
   jwtSecret: envVars.JWT_SECRET,
+  clientUrl: envVars.CLIENT_URL,
 }
