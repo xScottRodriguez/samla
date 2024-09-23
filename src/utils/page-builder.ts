@@ -2,7 +2,7 @@ import { Model } from 'mongoose'
 
 import { ApiError } from '../errors'
 import { IPagination, IPaginationOptions } from '../interfaces'
-import { getTakeAndSkip } from '../utils'
+import { getTakeAndSkip } from '.'
 
 /**
  * Servicio de paginación genérica para MongoDB usando Mongoose

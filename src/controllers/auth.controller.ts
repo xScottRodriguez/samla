@@ -58,7 +58,7 @@ class AuthController {
     try {
       const { files } = req
 
-      if (!files || Object.keys(files).length === 0)
+      if (!files || Object.keys(files)?.length === 0)
         throw ApiError.badRequest('No se cargaron archivos')
 
       const filesNormalized = normalizedFiles(files)

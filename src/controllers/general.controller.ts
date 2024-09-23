@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 
 import { HttpStatusCode } from '../errors'
-import { generalService } from '../services/'
+import { generalService } from '../services'
 import { SuccessResponse } from '../utils'
 
 class GeneralController {
